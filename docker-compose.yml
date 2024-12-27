@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  go-app:
+    # container_name: go-app
+    image: francescoxx/go-app:1.0.1
+    build: .
+    environment:
+      DATABASE_URL: "host=go_db user=postgres password=postgres dbname=postgres sslmode=disable"
+    # ports:
+    #   - "8000:8000"
+    depends_on:
+      - go_db
+  go_db:
+    container_name: go_db
+    image: postgres:12
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  pg-admin:
+    container_name: pg-admin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050" 
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - go-app
+    ports:
+      - 8000:8000
+  frontend:
+    image: web-image:v7 
+    ports:
+      - "80:80"
+    environment:  
+      - API_URL=http://localhost:8000/humans 
+    depends_on:
+      - go-app
+      - nginx
+volumes:  
+  pgdata: {}
