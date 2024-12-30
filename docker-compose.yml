@@ -40,14 +40,5 @@ services:
       - go-app
     ports:
       - 8000:8000
-  frontend:
-    image: web-image:v7 
-    ports:
-      - "80:80"
-    environment:  
-      - API_URL=http://localhost:8000/humans 
-    depends_on:
-      - go-app
-      - nginx
 volumes:  
   pgdata: {}
