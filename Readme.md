@@ -1,3 +1,6 @@
+# Credit
+golang and docker-composefile by https://github.com/Thanabodin19/Go-CRUD-Docker.git
+
 # Go Lang CRUD API 🚀
 Create Table Human
 
