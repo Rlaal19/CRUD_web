@@ -2,6 +2,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Axios from 'axios';
 import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
@@ -13,16 +14,17 @@ const Create = () => {
         e.preventDefault();
         Axios.post('http://localhost:8000/humans', { F_name: name, L_name: sur })
             .then(result => {
-                if (result.data.status) {
-                    alert("Add User Success");
-                    window.location.reload();
+                if (result.status === 200) { // 201 หมายถึง "Created"
+                    alert(result.data.message || "Add User success");
+                    window.location.reload(); // รีเฟรชหน้าเพื่ออัปเดตข้อมูล
                 } else {
-                    alert(result.data.message);
+                    alert("เกิดข้อผิดพลาดในการเพิ่มผู้ใช้!");
+                    window.location.reload();
                 }
             })
             .catch(err => {
                 console.error("Error:", err);
-                alert("Error creating user.");
+                alert("ไม่สามารถสร้างผู้ใช้ได้ กรุณาลองอีกครั้ง!");
             });
     };
 
