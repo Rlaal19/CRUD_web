@@ -15,14 +15,15 @@ go get github.com/gorilla/mux
 go get github.com/lib/pq
 ```
 ## Run Frontend
-- npm install react-router-dom axios daisyui
+
+เข้า path fronend
+```bash
+npm install react-router-dom axios daisyui
 npm i --save @fortawesome/fontawesome-svg-core
-
 npm i --save @fortawesome/free-solid-svg-icons npm i --save @fortawesome/free-regular-svg-icons npm i --save @fortawesome/free-brands-svg-icons
-
 npm i --save @fortawesome/react-fontawesome@latest
-
-เมื่อติดตั้งเสร็จเข้า path fronend และใช้คำสั่ง npm run dev
+```
+เมื่อติดตังเสร็จใช้คำสั่ง npm run dev
 
 ## Run Docker Compose 🐳 
 Go Lang(App) + Postgres(DB) + Nginx(Webserver)
