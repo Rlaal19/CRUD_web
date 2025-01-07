@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   go-app:
-    # container_name: go-app
-    image: francescoxx/go-app:1.0.1
+    container_name: go-app
+    # image: francescoxx/go-app:1.0.1
     build: .
     environment:
       DATABASE_URL: "host=go_db user=postgres password=postgres dbname=postgres sslmode=disable"
@@ -11,6 +11,7 @@ services:
     #   - "8000:8000"
     depends_on:
       - go_db
+
   go_db:
     container_name: go_db
     image: postgres:12
@@ -22,6 +23,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
   pg-admin:
     container_name: pg-admin
     image: dpage/pgadmin4
@@ -31,6 +33,7 @@ services:
       - PGADMIN_LISTEN_PORT=5050
     ports:
       - "5050:5050" 
+
   nginx:
     container_name: nginx
     image: nginx:latest
@@ -40,5 +43,14 @@ services:
       - go-app
     ports:
       - 8000:8000
+
+  react:
+    container_name: react
+    image: web-react:V5
+    depends_on:
+      - nginx
+    ports:
+      - 5178:5178
+    
 volumes:  
   pgdata: {}

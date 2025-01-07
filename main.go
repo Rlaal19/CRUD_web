@@ -44,7 +44,7 @@ func main() {
 
 	// ใช้งาน CORS
 	corsHandler := handlers.CORS(
-		handlers.AllowedOrigins([]string{"http://localhost:5174"}), // สามารถปรับ URL นี้ตามความต้องการ
+		handlers.AllowedOrigins([]string{"*"}), // สามารถปรับ URL นี้ตามความต้องการ
 		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"}),
 		handlers.AllowedHeaders([]string{"Content-Type"}),
 	)

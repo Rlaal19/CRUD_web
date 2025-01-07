@@ -9,17 +9,20 @@ function Show() {
 
     // ดึงข้อมูลจาก Backend
     useEffect(() => {
-        fetch("http://localhost:8000/humans")
+        const test = async () => {
+            await fetch("http://127.0.0.1:8000/humans")
             .then((response) => response.json())
             .then((data) => setUsers(data))
             .catch((error) => console.error("Error fetching data:", error));
+        }
+        test()
     }, []);
 
     // ฟังก์ชันลบข้อมูล
     const handleDelete = (id) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this user?");
         if (confirmDelete) {
-            fetch(`http://localhost:8000/humans/${id}`, {
+            fetch(`http://127.0.0.1:8000/humans/${id}`, {
                 method: "DELETE",
             })
                 .then((response) => {
