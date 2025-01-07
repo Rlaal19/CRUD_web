@@ -35,7 +35,7 @@ const Edit = () => {
     // ส่งคำขอแก้ไขข้อมูลไปยัง Backend
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://nginx:8000/humans/${id}`, {
+        fetch(`http://127.0.0.1:8000/humans/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

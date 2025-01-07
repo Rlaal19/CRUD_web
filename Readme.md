@@ -14,10 +14,15 @@ go mod init api
 go get github.com/gorilla/mux
 go get github.com/lib/pq
 ```
+## Beckend
+```bash
+docker-compose up -d
+```
 ## Run Frontend
 
 เข้า path fronend
 ```bash
+docker build -t web-react:V5 .   
 npm install react-router-dom axios daisyui
 npm i --save @fortawesome/fontawesome-svg-core
 npm i --save @fortawesome/free-solid-svg-icons npm i --save @fortawesome/free-regular-svg-icons npm i --save @fortawesome/free-brands-svg-icons
