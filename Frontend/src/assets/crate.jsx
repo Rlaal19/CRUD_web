@@ -12,7 +12,7 @@ const Create = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post('http://127.0.0.1:8000/humans', { F_name: name, L_name: sur })
+        Axios.post('http://172.20.10.2:8000/humans', { F_name: name, L_name: sur })
             .then(result => {
                 if (result.status === 200) { // 201 หมายถึง "Created"
                     alert(result.data.message || "Add User success");
